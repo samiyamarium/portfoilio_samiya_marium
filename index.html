@@ -1,142 +1,765 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samiya Marium | Electrical & AI Engineer Portfolio</title>
-    <script src="https://tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        earth: {
+                            950: '#121611', // Darkest deep soil
+                            900: '#1a221a', // Rich foliage dark
+                            850: '#212c21', // Dark card background
+                            800: '#2b3a2b', // Card borders
+                            700: '#3c523c', // Muted sage border
+                            600: '#526e52', // Muted sage text
+                            400: '#81b29a', // Sage Accent
+                            300: '#a3c7b5', // Light sage
+                            100: '#f4f1de', // Warm cream text
+                        },
+                        terracotta: {
+                            400: '#e89078',
+                            500: '#e07a5f', // Primary Terracotta Accent
+                            600: '#c85e43',
+                            700: '#a1462f',
+                        },
+                        sand: {
+                            300: '#e3c2a1',
+                            400: '#d4a373', // Sand / Amber Accent
+                            500: '#bd8c5b',
+                        },
+                        clay: {
+                            900: '#271e17', // Deep soil brown card background
+                            800: '#3a2b21',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        code: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        @import url('https://googleapis.com');
-        body { font-family: 'Inter', sans-serif; }
-        .code-font { font-family: 'Fira Code', monospace; }
-        .glow-effect:hover {
-            box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
-            border-color: rgba(14, 165, 233, 0.4);
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #121611;
+            color: #f4f1de;
+        }
+        .code-font { 
+            font-family: 'Fira Code', monospace; 
+        }
+        
+        /* Earth Glow Effects */
+        .glow-terracotta {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glow-terracotta:hover {
+            box-shadow: 0 0 25px rgba(224, 122, 95, 0.25), 0 0 10px rgba(129, 178, 154, 0.15);
+            border-color: rgba(224, 122, 95, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .glow-sand:hover {
+            box-shadow: 0 0 25px rgba(212, 163, 115, 0.2);
+            border-color: rgba(212, 163, 115, 0.5);
+        }
+
+        /* Earthy Subtle Grid */
+        .bg-earth-pattern {
+            background-image: radial-gradient(rgba(129, 178, 154, 0.08) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121611;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2b3a2b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3c523c;
+        }
+
+        /* Custom Modal Backdrop Blur */
+        .modal-blur {
+            backdrop-filter: blur(8px);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-sky-500 selection:text-white antialiased">
+<body class="bg-earth-950 text-earth-100 min-h-screen selection:bg-terracotta-500 selection:text-white antialiased bg-earth-pattern relative flex flex-col justify-between">
+
+    <!-- Ambient Earth Lighting -->
+    <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-terracotta-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+    <div class="fixed top-1/3 right-1/4 w-[500px] h-[500px] bg-earth-400/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-10 left-1/3 w-[400px] h-[400px] bg-sand-400/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
 
     <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-900">
-        <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="code-font font-bold text-lg text-sky-400">
+    <header class="sticky top-0 z-40 bg-earth-950/85 backdrop-blur-md border-b border-earth-800/80 transition-all">
+        <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="code-font font-bold text-lg text-terracotta-500 hover:text-terracotta-400 transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-leaf text-earth-400 text-sm"></i>
                 &lt;Samiya.M /&gt;
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-earth-400">
+                <a href="#about" class="hover:text-terracotta-500 transition-colors py-1 border-b-2 border-transparent hover:border-terracotta-500">About</a>
+                <a href="#competencies" class="hover:text-terracotta-500 transition-colors py-1 border-b-2 border-transparent hover:border-terracotta-500">Competencies</a>
+                <a href="#projects" class="hover:text-terracotta-500 transition-colors py-1 border-b-2 border-transparent hover:border-terracotta-500">Projects</a>
+                <a href="#contact" class="hover:text-terracotta-500 transition-colors py-1 border-b-2 border-transparent hover:border-terracotta-500">Contact</a>
             </div>
-            <div class="flex gap-6 text-sm font-medium text-slate-400">
-                <a href="#about" class="hover:text-sky-400 transition-colors">About</a>
-                <a href="#competencies" class="hover:text-sky-400 transition-colors">Competencies</a>
-                <a href="#projects" class="hover:text-sky-400 transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-sky-400 transition-colors">Contact</a>
+
+            <div class="hidden md:flex items-center gap-3">
+                <a href="#contact" class="px-4 py-2 text-xs font-semibold code-font text-earth-100 bg-earth-900 border border-earth-700 hover:border-terracotta-500 rounded-lg transition-all flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-earth-400 animate-pulse"></span> Available for Hire
+                </a>
             </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden text-earth-400 hover:text-earth-100 focus:outline-none p-2" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
         </nav>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-earth-900 border-b border-earth-800 px-6 py-4 flex flex-col gap-4 text-sm font-medium text-earth-400">
+            <a href="#about" class="hover:text-terracotta-500 transition-colors">About</a>
+            <a href="#competencies" class="hover:text-terracotta-500 transition-colors">Competencies</a>
+            <a href="#projects" class="hover:text-terracotta-500 transition-colors">Projects</a>
+            <a href="#contact" class="hover:text-terracotta-500 transition-colors">Contact</a>
+        </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-6 py-12 space-y-24">
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-28 flex-grow">
 
         <!-- Hero Section -->
-        <section id="about" class="py-8 flex flex-col md:flex-row gap-12 items-center">
+        <section id="about" class="py-6 flex flex-col lg:flex-row gap-12 items-center justify-between">
             <div class="flex-1 space-y-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/20 bg-sky-500/5 text-sky-400 text-xs font-medium code-font">
-                    <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span> Globally Competitive Profile
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-terracotta-500/30 bg-clay-900/80 text-sand-400 text-xs font-medium code-font shadow-inner">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-terracotta-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-terracotta-500"></span>
+                    </span>
+                    Globally Competitive Profile
                 </div>
-                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-                    Samiya Marium
-                </h1>
-                <p class="text-xl text-sky-400 code-font font-medium">Electrical Engineer & AI Specialist</p>
-                <p class="text-slate-400 leading-relaxed max-w-2xl">
+                
+                <!-- Main Name & Title -->
+                <div class="space-y-2">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-earth-100">
+                        Samiya Marium
+                    </h1>
+                    <p class="text-xl sm:text-2xl text-terracotta-500 code-font font-semibold tracking-wide flex items-center gap-2">
+                        <span>Electrical Engineer</span>
+                        <span class="text-sand-400">&amp;</span>
+                        <span>AI Specialist</span>
+                    </p>
+                </div>
+                
+                <!-- Bio Description -->
+                <p class="text-earth-300 leading-relaxed text-base sm:text-lg max-w-2xl">
                     Bridging the physical precision of traditional electrical systems with the frontier of generative computing. From developing low-latency industrial communication protocols to engineering autonomous multi-agent software architectures, my mission is to deploy production-ready AI solutions built for global scales.
                 </p>
-                <div class="flex gap-4 pt-2">
-                    <a href="https://linkedin.com" target="_blank" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
-                        <i class="fab fa-linkedin"></i> Connect on LinkedIn
+                
+                <!-- Call to Action Buttons -->
+                <div class="flex flex-wrap gap-4 pt-3">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold text-sm rounded-lg transition-all shadow-lg shadow-terracotta-700/30 flex items-center gap-2.5 group">
+                        <i class="fab fa-linkedin text-base group-hover:scale-110 transition-transform"></i> Connect on LinkedIn
                     </a>
-                    <a href="https://vercel.app" target="_blank" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
-                        <i class="fas fa-external-link-alt"></i> Live Portfolio
+                    <a href="#projects" class="px-6 py-3 bg-earth-900 hover:bg-earth-850 border border-earth-700 hover:border-sand-400 text-earth-100 font-semibold text-sm rounded-lg transition-all flex items-center gap-2.5 group">
+                        <i class="fas fa-globe text-sand-400 group-hover:rotate-12 transition-transform"></i> Live Portfolio
                     </a>
                 </div>
             </div>
-            <div class="w-48 h-48 md:w-64 md:h-64 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-between p-1 shadow-2xl relative group">
-                <div class="w-full h-full bg-slate-950 rounded-xl flex flex-col justify-center items-center text-center p-6 border border-slate-900">
-                    <i class="fas fa-microchip text-4xl text-sky-400 mb-3 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-1">Engineering Track</span>
-                    <span class="text-sm font-bold text-slate-300">Hardware &bull; Agents &bull; Web</span>
+
+            <!-- Hardware & Track Card -->
+            <div class="w-full sm:w-72 md:w-80 h-80 rounded-2xl bg-gradient-to-tr from-terracotta-500 via-sand-400 to-earth-400 p-1 shadow-2xl relative group shrink-0">
+                <div class="w-full h-full bg-clay-900 rounded-xl flex flex-col justify-between p-6 border border-earth-800 relative overflow-hidden">
+                    <div class="flex justify-between items-start">
+                        <div class="w-10 h-10 rounded-lg bg-terracotta-500/10 border border-terracotta-500/30 flex items-center justify-center">
+                            <i class="fas fa-microchip text-terracotta-500 text-xl group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="text-[10px] code-font bg-earth-950 px-2.5 py-1 rounded-full border border-earth-800 text-earth-400">TRACK 01</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <span class="text-xs uppercase tracking-widest text-sand-400 font-bold code-font">Engineering Focus</span>
+                        <h3 class="text-xl font-bold text-earth-100">Hardware &bull; Agents &bull; Web</h3>
+                        <p class="text-xs text-earth-400 leading-relaxed">
+                            Full-stack IoT telemetry &amp; LLM multi-agent integration.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-earth-800/80 flex justify-between items-center text-xs code-font text-earth-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[6px] text-earth-400"></i> NUST &amp; AI Tech</span>
+                        <span class="text-terracotta-500 font-bold">100% Production</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Competency & Matrix Section -->
-        <section id="competencies" class="space-y-6">
-            <h2 class="text-2xl font-bold tracking-tight text-slate-100 flex items-center gap-3">
-                <span class="text-sky-500 code-font">01.</span> Core Competency Profile
-            </h2>
-            
-            <div class="overflow-x-auto border border-slate-900 rounded-xl bg-slate-900/20 backdrop-blur-sm">
+        <!-- Competency Profile Section -->
+        <section id="competencies" class="space-y-8">
+            <div class="flex items-center gap-3">
+                <span class="text-terracotta-500 code-font font-bold text-lg">01.</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-earth-100">Core Competency Profile</h2>
+                <div class="h-px bg-earth-800 flex-1 ml-4 hidden sm:block"></div>
+            </div>
+
+            <!-- Interactive Skill Matrix Tabs -->
+            <div class="flex flex-wrap gap-2 text-xs font-semibold code-font border-b border-earth-800 pb-3" id="skill-tabs">
+                <button class="px-4 py-2 rounded-lg bg-terracotta-500 text-white transition-all skill-tab-btn active" data-target="all">All Metrics</button>
+                <button class="px-4 py-2 rounded-lg bg-earth-900 border border-earth-800 text-earth-400 hover:text-earth-100 transition-all skill-tab-btn" data-target="edu">Education</button>
+                <button class="px-4 py-2 rounded-lg bg-earth-900 border border-earth-800 text-earth-400 hover:text-earth-100 transition-all skill-tab-btn" data-target="ai">AI Certifications</button>
+                <button class="px-4 py-2 rounded-lg bg-earth-900 border border-earth-800 text-earth-400 hover:text-earth-100 transition-all skill-tab-btn" data-target="stack">Tech Stack</button>
+            </div>
+
+            <!-- Structured Competency Table -->
+            <div class="overflow-x-auto border border-earth-800 rounded-xl bg-earth-900/40 backdrop-blur-sm shadow-xl">
                 <table class="w-full text-left border-collapse text-sm">
                     <thead>
-                        <tr class="border-b border-slate-900 bg-slate-900/50 text-slate-400 font-medium">
-                            <th class="p-4 w-1/4">Dimension</th>
-                            <th class="p-4 w-1/2">Details & Metrics</th>
-                            <th class="p-4 w-1/4">Global Alignment</th>
+                        <tr class="border-b border-earth-800 bg-earth-900/90 text-sand-400 font-medium code-font uppercase text-xs tracking-wider">
+                            <th class="p-4 sm:p-5 w-1/4">Dimension</th>
+                            <th class="p-4 sm:p-5 w-1/2">Details &amp; Metrics</th>
+                            <th class="p-4 sm:p-5 w-1/4">Global Alignment</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-900 text-slate-300">
-                        <tr class="hover:bg-slate-900/30 transition-colors">
-                            <td class="p-4 font-semibold text-white flex items-center gap-2">
-                                <i class="fas fa-graduation-cap text-sky-400 w-5"></i> Elite Education
+                    <tbody class="divide-y divide-earth-800/60 text-earth-100" id="competency-rows">
+                        <!-- Education Row -->
+                        <tr class="hover:bg-earth-850/60 transition-colors comp-row" data-category="edu">
+                            <td class="p-4 sm:p-5 font-semibold text-earth-100 flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-graduation-cap text-terracotta-500"></i>
+                                </div>
+                                <div>
+                                    <span class="block">Elite Education</span>
+                                    <span class="text-[10px] code-font text-earth-400 font-normal">NUST Master's</span>
+                                </div>
                             </td>
-                            <td class="p-4">
-                                <strong class="text-slate-100">MS in Electrical Engineering</strong> (Telecommunications)<br>
-                                <span class="text-slate-400 text-xs">National University of Sciences and Technology (NUST)</span><br>
-                                <p class="mt-1 text-slate-400 text-xs">Thesis: Low-latency MAC protocols for Industrial IoT / WSNs.</p>
+                            <td class="p-4 sm:p-5">
+                                <strong class="text-earth-100 font-semibold text-base">MS in Electrical Engineering</strong> 
+                                <span class="text-terracotta-500 text-xs code-font ml-1">(Telecommunications)</span><br>
+                                <span class="text-earth-400 text-xs font-medium">National University of Sciences and Technology (NUST)</span>
+                                <p class="mt-2 text-earth-300 text-xs leading-relaxed bg-earth-950/50 p-2.5 rounded border border-earth-800/80">
+                                    <span class="text-sand-400 font-semibold code-font">Thesis:</span> Low-latency MAC protocols for Industrial IoT / WSNs.
+                                </p>
                             </td>
-                            <td class="p-4 text-xs text-slate-400">Directly optimized for edge-computing and smart physical infrastructure.</td>
+                            <td class="p-4 sm:p-5 text-xs text-earth-400 leading-relaxed">
+                                Directly optimized for edge-computing and smart physical infrastructure.
+                            </td>
                         </tr>
-                        <tr class="hover:bg-slate-900/30 transition-colors">
-                            <td class="p-4 font-semibold text-white flex items-center gap-2">
-                                <i class="fas fa-robot text-sky-400 w-5"></i> AI Expertise
+
+                        <!-- AI Expertise Row -->
+                        <tr class="hover:bg-earth-850/60 transition-colors comp-row" data-category="ai">
+                            <td class="p-4 sm:p-5 font-semibold text-earth-100 flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-sand-400/10 border border-sand-400/20 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-robot text-sand-400"></i>
+                                </div>
+                                <div>
+                                    <span class="block">AI Expertise</span>
+                                    <span class="text-[10px] code-font text-earth-400 font-normal">Panaversity Certified</span>
+                                </div>
                             </td>
-                            <td class="p-4">
-                                <strong class="text-slate-100">Panaversity Certified Associate Foundations</strong> (78.3% Score)<br>
-                                <span class="text-slate-400 text-xs">Anthropic/Claude & Governor Sindh IT Initiative Track</span>
+                            <td class="p-4 sm:p-5">
+                                <strong class="text-earth-100 font-semibold text-base">Panaversity Certified Associate Foundations</strong>
+                                <span class="text-sand-400 text-xs code-font font-bold ml-1.5 px-2 py-0.5 rounded bg-sand-400/10 border border-sand-400/20">78.3% Score</span><br>
+                                <span class="text-earth-400 text-xs font-medium">Anthropic/Claude Track &amp; Governor Sindh IT Initiative</span>
                             </td>
-                            <td class="p-4 text-xs text-slate-400">Validated execution of multi-model pipelines and autonomous agents.</td>
+                            <td class="p-4 sm:p-5 text-xs text-earth-400 leading-relaxed">
+                                Validated execution of multi-model pipelines and autonomous agents.
+                            </td>
                         </tr>
-                        <tr class="hover:bg-slate-900/30 transition-colors">
-                            <td class="p-4 font-semibold text-white flex items-center gap-2">
-                                <i class="fas fa-code text-sky-400 w-5"></i> Technical Stack
+
+                        <!-- Technical Stack Row -->
+                        <tr class="hover:bg-earth-850/60 transition-colors comp-row" data-category="stack">
+                            <td class="p-4 sm:p-5 font-semibold text-earth-100 flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-earth-400/10 border border-earth-400/20 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-code text-earth-400"></i>
+                                </div>
+                                <div>
+                                    <span class="block">Technical Stack</span>
+                                    <span class="text-[10px] code-font text-earth-400 font-normal">Core Libraries &amp; Tools</span>
+                                </div>
                             </td>
-                            <td class="p-4">
-                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">Python</span>
-                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">Next.js</span>
-                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">TypeScript</span>
-                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">Gemini CLI</span>
-                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">Streamlit</span>
-                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">MATLAB</span>
+                            <td class="p-4 sm:p-5">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono flex items-center gap-1.5">
+                                        <i class="fab fa-python text-sand-400"></i> Python
+                                    </span>
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono flex items-center gap-1.5">
+                                        <i class="fa-solid fa-server text-terracotta-500"></i> Next.js
+                                    </span>
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono flex items-center gap-1.5">
+                                        <i class="fab fa-js text-sand-400"></i> TypeScript
+                                    </span>
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono flex items-center gap-1.5">
+                                        <i class="fas fa-terminal text-earth-400"></i> Gemini CLI
+                                    </span>
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono flex items-center gap-1.5">
+                                        <i class="fas fa-chart-line text-terracotta-500"></i> Streamlit
+                                    </span>
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono flex items-center gap-1.5">
+                                        <i class="fas fa-wave-square text-sand-400"></i> MATLAB
+                                    </span>
+                                </div>
                             </td>
-                            <td class="p-4 text-xs text-slate-400">Modern stack standard across high-velocity agile engineering squads.</td>
+                            <td class="p-4 sm:p-5 text-xs text-earth-400 leading-relaxed">
+                                Modern stack standard across high-velocity agile engineering squads.
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Projects Ecosystem -->
-        <section id="projects" class="space-y-6">
-            <h2 class="text-2xl font-bold tracking-tight text-slate-100 flex items-center gap-3">
-                <span class="text-sky-500 code-font">02.</span> Software & Research Deployments
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Project 1 -->
-                <div class="p-6 rounded-xl border border-slate-900 bg-slate-900/10 glow-effect transition-all space-y-4">
-                    <div class="flex justify-between items-start">
-                        <i class="fas fa-book-open text-2xl text-sky-400"></i>
-                        <span class="text-xs font-mono text-slate-500">Docusaurus / AI CLI</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">Humanoid Robots Technical Publication</h3>
-                    <p class="text-sm text-slate-400 leading-relaxed">
-                        An open-source comprehensive exploration of human-machine interaction systems compiled dynamically using Google Gemini tooling structures.
-                    </p>
+        <!-- Projects Section -->
+        <section id="projects" class="space-y-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="text-terracotta-500 code-font font-bold text-lg">02.</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-earth-100">Software &amp; Research Deployments</h2>
                 </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Project 1 (Highlighted in prompt) -->
+                <div class="p-6 rounded-xl border border-earth-800 bg-earth-900/50 glow-terracotta flex flex-col justify-between space-y-5">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <div class="w-10 h-10 rounded-lg bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center">
+                                <i class="fas fa-book-open text-terracotta-500 text-lg"></i>
+                            </div>
+                            <span class="text-xs font-mono text-sand-400 bg-clay-900 px-2.5 py-1 rounded border border-earth-800">Docusaurus / AI CLI</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-earth-100">Humanoid Robots Technical Publication</h3>
+                        <p class="text-sm text-earth-400 leading-relaxed">
+                            An open-source comprehensive exploration of human-machine interaction systems compiled dynamically using Google Gemini tooling structures and automated documentation pipelines.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-earth-800/80 flex items-center justify-between">
+                        <div class="flex gap-2">
+                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">Robotics</span>
+                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">Gemini CLI</span>
+                        </div>
+                        <button onclick="openProjectModal('modal-p1')" class="text-xs font-semibold text-terracotta-500 hover:text-terracotta-400 flex items-center gap-1">
+                            Details <i class="fas fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Project 2 -->
+                <div class="p-6 rounded-xl border border-earth-800 bg-earth-900/50 glow-terracotta flex flex-col justify-between space-y-5">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <div class="w-10 h-10 rounded-lg bg-sand-400/10 border border-sand-400/20 flex items-center justify-center">
+                                <i class="fas fa-network-wired text-sand-400 text-lg"></i>
+                            </div>
+                            <span class="text-xs font-mono text-earth-400 bg-clay-900 px-2.5 py-1 rounded border border-earth-800">MATLAB / Python / IIoT</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-earth-100">Low-Latency Industrial MAC Protocol</h3>
+                        <p class="text-sm text-earth-400 leading-relaxed">
+                            Custom wireless MAC scheduling layer designed for noisy industrial IIoT telemetry, minimizing packet collision and maintaining sub-10ms priority scheduling.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-earth-800/80 flex items-center justify-between">
+                        <div class="flex gap-2">
+                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">Telecommunications</span>
+                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">NUST Thesis</span>
+                        </div>
+                        <button onclick="openProjectModal('modal-p2')" class="text-xs font-semibold text-sand-400 hover:text-sand-300 flex items-center gap-1">
+                            Details <i class="fas fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="p-6 rounded-xl border border-earth-800 bg-earth-900/50 glow-terracotta flex flex-col justify-between space-y-5">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <div class="w-10 h-10 rounded-lg bg-earth-400/10 border border-earth-400/20 flex items-center justify-center">
+                                <i class="fas fa-sitemap text-earth-400 text-lg"></i>
+                            </div>
+                            <span class="text-xs font-mono text-earth-400 bg-clay-900 px-2.5 py-1 rounded border border-earth-800">TypeScript / Anthropic</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-earth-100">Autonomous Multi-Agent Orchestrator</h3>
+                        <p class="text-sm text-earth-400 leading-relaxed">
+                            A stateful agent framework utilizing Claude API tool-use patterns for complex code generation, validation loops, and multi-step reasoning workflows.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-earth-800/80 flex items-center justify-between">
+                        <div class="flex gap-2">
+                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">Claude SDK</span>
+                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">Agentic AI</span>
+                        </div>
+                        <button onclick="openProjectModal('modal-p3')" class="text-xs font-semibold text-earth-400 hover:text-earth-300 flex items-center gap-1">
+                            Details <i class="fas fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="p-6 rounded-xl border border-earth-800 bg-earth-900/50 glow-terracotta flex flex-col justify-between space-y-5">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <div class="w-10 h-10 rounded-lg bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center">
+                                <i class="fas fa-chart-line text-terracotta-500 text-lg"></i>
+                            </div>
+                            <span class="text-xs font-mono text-earth-400 bg-clay-900 px-2.5 py-1 rounded border border-earth-800">Streamlit / Python</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-earth-100">Interactive Telemetry &amp; Signal Analytics</h3>
+                        <p class="text-sm text-earth-400 leading-relaxed">
+                            Real-time streaming analytical dashboard to process high-frequency signals, detect anomalies in industrial sensors, and provide interactive parameter tuning.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-earth-800/80 flex items-center justify-between">
+                        <div class="flex gap-2">
+                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">Streamlit</span>
+                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">Signal Processing</span>
+                        </div>
+                        <button onclick="openProjectModal('modal-p4')" class="text-xs font-semibold text-terracotta-500 hover:text-terracotta-400 flex items-center gap-1">
+                            Details <i class="fas fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Styled Contact Section -->
+        <section id="contact" class="space-y-8 pt-4">
+            <div class="flex items-center gap-3">
+                <span class="text-terracotta-500 code-font font-bold text-lg">03.</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-earth-100">Get In Touch</h2>
+                <div class="h-px bg-earth-800 flex-1 ml-4 hidden sm:block"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Direct Metrics & Info Sidebar -->
+                <div class="lg:col-span-5 space-y-6 bg-earth-900/60 p-6 sm:p-8 rounded-2xl border border-earth-800">
+                    <h3 class="text-xl font-bold text-earth-100">Let's Collaborate</h3>
+                    <p class="text-earth-400 text-sm leading-relaxed">
+                        Currently open to positions and technical partnerships in AI Systems, Industrial Communications, and Autonomous Hardware-Software architectures.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-center gap-3 text-sm">
+                            <div class="w-9 h-9 rounded-lg bg-earth-950 border border-earth-800 flex items-center justify-center text-terracotta-500">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-earth-400 code-font">Email</span>
+                                <a href="mailto:samiya.marium@example.com" class="text-earth-100 hover:text-terracotta-500 transition-colors font-medium">samiya.marium@example.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 text-sm">
+                            <div class="w-9 h-9 rounded-lg bg-earth-950 border border-earth-800 flex items-center justify-center text-sand-400">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-earth-400 code-font">LinkedIn</span>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-earth-100 hover:text-sand-400 transition-colors font-medium">linkedin.com/in/samiyamarium</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 text-sm">
+                            <div class="w-9 h-9 rounded-lg bg-earth-950 border border-earth-800 flex items-center justify-center text-earth-400">
+                                <i class="fas fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-earth-400 code-font">Location</span>
+                                <span class="text-earth-100 font-medium">Pakistan (Global Remote)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Metrics Widget -->
+                    <div class="p-4 rounded-xl bg-clay-900 border border-earth-800 space-y-3">
+                        <span class="text-xs code-font text-sand-400 font-bold block">PROFILE QUICK STATS</span>
+                        <div class="grid grid-cols-2 gap-2 text-center text-xs code-font">
+                            <div class="p-2 rounded bg-earth-950 border border-earth-800">
+                                <span class="block text-terracotta-500 font-bold text-base">MS EE</span>
+                                <span class="text-[10px] text-earth-400">NUST Graduate</span>
+                            </div>
+                            <div class="p-2 rounded bg-earth-950 border border-earth-800">
+                                <span class="block text-sand-400 font-bold text-base">78.3%</span>
+                                <span class="text-[10px] text-earth-400">Panaversity AI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7 bg-earth-900/60 p-6 sm:p-8 rounded-2xl border border-earth-800">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-xs font-semibold code-font text-earth-400 mb-1">YOUR NAME</label>
+                            <input type="text" id="name" required placeholder="e.g. Dr. Alex Vance" class="w-full px-4 py-3 rounded-lg bg-earth-950 border border-earth-800 text-earth-100 placeholder-earth-600 focus:outline-none focus:border-terracotta-500 text-sm transition-colors">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-xs font-semibold code-font text-earth-400 mb-1">EMAIL ADDRESS</label>
+                            <input type="email" id="email" required placeholder="e.g. alex@institution.org" class="w-full px-4 py-3 rounded-lg bg-earth-950 border border-earth-800 text-earth-100 placeholder-earth-600 focus:outline-none focus:border-terracotta-500 text-sm transition-colors">
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-semibold code-font text-earth-400 mb-1">MESSAGE / INQUIRY</label>
+                            <textarea id="message" rows="4" required placeholder="Describe your project, initiative, or opportunity..." class="w-full px-4 py-3 rounded-lg bg-earth-950 border border-earth-800 text-earth-100 placeholder-earth-600 focus:outline-none focus:border-terracotta-500 text-sm transition-colors resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="w-full py-3.5 bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold text-sm rounded-lg transition-all shadow-lg shadow-terracotta-700/20 flex items-center justify-center gap-2">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+
+                    <div id="form-feedback" class="hidden mt-4 p-4 rounded-lg bg-earth-800 border border-earth-700 text-sm text-sand-400 text-center code-font">
+                        <i class="fas fa-check-circle text-earth-400 mr-2"></i> Message dispatched successfully!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-earth-800/80 py-8 text-xs text-earth-400 code-font">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Samiya Marium. Designed in Earth Tones.</p>
+            <div class="flex items-center gap-4">
+                <span>Electrical &amp; AI Engineering</span>
+                <span>&bull;</span>
+                <span class="text-terracotta-500">NUST &amp; Panaversity</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PROJECT MODALS -->
+
+    <!-- Modal Project 1 -->
+    <div id="modal-p1" class="fixed inset-0 bg-earth-950/80 modal-blur hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-clay-900 border border-earth-800 rounded-2xl max-w-xl w-full p-6 sm:p-8 space-y-6 relative shadow-2xl">
+            <button onclick="closeProjectModal('modal-p1')" class="absolute top-4 right-4 text-earth-400 hover:text-earth-100 p-2">
+                <i class="fas fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center text-terracotta-500">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-earth-100">Humanoid Robots Technical Publication</h3>
+                    <span class="text-xs code-font text-sand-400">Docusaurus / Google Gemini CLI</span>
+                </div>
+            </div>
+
+            <p class="text-sm text-earth-300 leading-relaxed">
+                This project represents a full interactive digital handbook for modern humanoid robotics. It synthesizes complex inverse kinematics, motor control loops, and multimodal vision processing into structured documentation generated with custom Gemini CLI tooling workflows.
+            </p>
+
+            <div class="space-y-2 text-xs code-font bg-earth-950 p-4 rounded-xl border border-earth-800">
+                <div class="text-earth-400 font-bold mb-1">KEY TECHNICAL ACHIEVEMENTS:</div>
+                <div class="text-earth-300">&bull; Automated pipeline translating markdown specifications into static site deployments.</div>
+                <div class="text-earth-300">&bull; Structured taxonomy for humanoid state estimation and biped balance routines.</div>
+                <div class="text-earth-300">&bull; Native integration with Gemini API for dynamic topic querying.</div>
+            </div>
+
+            <div class="flex justify-end gap-3 pt-2">
+                <button onclick="closeProjectModal('modal-p1')" class="px-5 py-2.5 rounded-lg bg-earth-850 hover:bg-earth-800 text-earth-100 text-xs font-semibold">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Project 2 -->
+    <div id="modal-p2" class="fixed inset-0 bg-earth-950/80 modal-blur hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-clay-900 border border-earth-800 rounded-2xl max-w-xl w-full p-6 sm:p-8 space-y-6 relative shadow-2xl">
+            <button onclick="closeProjectModal('modal-p2')" class="absolute top-4 right-4 text-earth-400 hover:text-earth-100 p-2">
+                <i class="fas fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-sand-400/10 border border-sand-400/20 flex items-center justify-center text-sand-400">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-earth-100">Low-Latency Industrial MAC Protocol</h3>
+                    <span class="text-xs code-font text-sand-400">NUST Master's Research Thesis</span>
+                </div>
+            </div>
+
+            <p class="text-sm text-earth-300 leading-relaxed">
+                Engineered for critical wireless sensor networks (WSN) in industrial settings. Mitigates channel interference and frame collision through dynamic duty-cycle adjustments and contention-free slot reservation.
+            </p>
+
+            <div class="space-y-2 text-xs code-font bg-earth-950 p-4 rounded-xl border border-earth-800">
+                <div class="text-earth-400 font-bold mb-1">KEY METRICS &amp; SIMULATIONS:</div>
+                <div class="text-earth-300">&bull; 35% packet latency reduction under high-density node interference.</div>
+                <div class="text-earth-300">&bull; Simulated extensively in MATLAB and validated against IEEE 802.15.4 standards.</div>
+            </div>
+
+            <div class="flex justify-end gap-3 pt-2">
+                <button onclick="closeProjectModal('modal-p2')" class="px-5 py-2.5 rounded-lg bg-earth-850 hover:bg-earth-800 text-earth-100 text-xs font-semibold">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Project 3 -->
+    <div id="modal-p3" class="fixed inset-0 bg-earth-950/80 modal-blur hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-clay-900 border border-earth-800 rounded-2xl max-w-xl w-full p-6 sm:p-8 space-y-6 relative shadow-2xl">
+            <button onclick="closeProjectModal('modal-p3')" class="absolute top-4 right-4 text-earth-400 hover:text-earth-100 p-2">
+                <i class="fas fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-earth-400/10 border border-earth-400/20 flex items-center justify-center text-earth-400">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-earth-100">Autonomous Multi-Agent Orchestrator</h3>
+                    <span class="text-xs code-font text-sand-400">Panaversity / Anthropic Claude Track</span>
+                </div>
+            </div>
+
+            <p class="text-sm text-earth-300 leading-relaxed">
+                An agentic framework designed to orchestrate specialized AI agents capable of writing code, running automated lint checks, calling APIs, and executing self-correction logic prior to human review.
+            </p>
+
+            <div class="space-y-2 text-xs code-font bg-earth-950 p-4 rounded-xl border border-earth-800">
+                <div class="text-earth-400 font-bold mb-1">SYSTEM ARCHITECTURE:</div>
+                <div class="text-earth-300">&bull; Implements Tool Use / Function Calling via Anthropic TypeScript SDK.</div>
+                <div class="text-earth-300">&bull; Integrated memory state for multi-turn task resolution.</div>
+            </div>
+
+            <div class="flex justify-end gap-3 pt-2">
+                <button onclick="closeProjectModal('modal-p3')" class="px-5 py-2.5 rounded-lg bg-earth-850 hover:bg-earth-800 text-earth-100 text-xs font-semibold">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Project 4 -->
+    <div id="modal-p4" class="fixed inset-0 bg-earth-950/80 modal-blur hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-clay-900 border border-earth-800 rounded-2xl max-w-xl w-full p-6 sm:p-8 space-y-6 relative shadow-2xl">
+            <button onclick="closeProjectModal('modal-p4')" class="absolute top-4 right-4 text-earth-400 hover:text-earth-100 p-2">
+                <i class="fas fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center text-terracotta-500">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-earth-100">Interactive Telemetry Dashboard</h3>
+                    <span class="text-xs code-font text-sand-400">Streamlit / Python Data Stack</span>
+                </div>
+            </div>
+
+            <p class="text-sm text-earth-300 leading-relaxed">
+                A Streamlit web application designed to render live sensor telemetry, run FFT frequency domain calculations, and plot anomaly boundaries for hardware engineers.
+            </p>
+
+            <div class="space-y-2 text-xs code-font bg-earth-950 p-4 rounded-xl border border-earth-800">
+                <div class="text-earth-400 font-bold mb-1">CORE FEATURES:</div>
+                <div class="text-earth-300">&bull; Real-time rendering of streaming sensor packets.</div>
+                <div class="text-earth-300">&bull; Configurable filtering thresholds for electrical noise suppression.</div>
+            </div>
+
+            <div class="flex justify-end gap-3 pt-2">
+                <button onclick="closeProjectModal('modal-p4')" class="px-5 py-2.5 rounded-lg bg-earth-850 hover:bg-earth-800 text-earth-100 text-xs font-semibold">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Mobile Menu Toggle Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Competency Matrix Tab Filtering Logic
+        const tabButtons = document.querySelectorAll('.skill-tab-btn');
+        const rows = document.querySelectorAll('.comp-row');
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button state
+                tabButtons.forEach(b => {
+                    b.classList.remove('bg-terracotta-500', 'text-white', 'active');
+                    b.classList.add('bg-earth-900', 'border', 'border-earth-800', 'text-earth-400');
+                });
+                btn.classList.remove('bg-earth-900', 'border', 'border-earth-800', 'text-earth-400');
+                btn.classList.add('bg-terracotta-500', 'text-white', 'active');
+
+                const target = btn.getAttribute('data-target');
+
+                rows.forEach(row => {
+                    if (target === 'all' || row.getAttribute('data-category') === target) {
+                        row.style.display = 'table-row';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Handlers
+        function openProjectModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Contact Form Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('submit-btn');
+            const feedback = document.getElementById('form-feedback');
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Dispatching...';
+
+            setTimeout(() => {
+                submitBtn.classList.add('hidden');
+                feedback.classList.remove('hidden');
+                document.getElementById('contact-form').reset();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samiya Marium | Electrical & AI Engineer Portfolio</title>
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
         tailwind.config = {
@@ -19,30 +19,29 @@
                 extend: {
                     colors: {
                         earth: {
-                            950: '#121611',
-                            900: '#1a221a',
-                            850: '#212c21',
-                            800: '#2b3a2b',
-                            700: '#3c523c',
-                            600: '#526e52',
-                            400: '#81b29a',
-                            300: '#a3c7b5',
-                            100: '#f4f1de',
+                            950: '#0f140e', // Deep soil background
+                            900: '#151d14', // Soil card surface
+                            850: '#1b261b', // Surface hover
+                            800: '#253526', // Border dark
+                            700: '#354b37', // Subdued line
+                            600: '#4d6950', // Sage muted line
+                            500: '#81b29a', // Primary Sage Green
+                            400: '#a3c9b5', // Light Sage
+                            300: '#c5e0d1', // Soft Sage highlight
+                            100: '#f4f1de', // Text warm cream
                         },
                         terracotta: {
-                            400: '#e89078',
-                            500: '#e07a5f',
-                            600: '#c85e43',
-                            700: '#a1462f',
+                            300: '#f0aa95',
+                            400: '#e88d74',
+                            500: '#e07a5f', // Primary Terracotta
+                            600: '#c25d43',
+                            700: '#9b422a',
                         },
-                        sand: {
-                            300: '#e3c2a1',
-                            400: '#d4a373',
-                            500: '#bd8c5b',
-                        },
-                        clay: {
-                            900: '#271e17',
-                            800: '#3a2b21',
+                        amber: {
+                            300: '#e8c599',
+                            400: '#dea262',
+                            500: '#d4a373', // Warm Amber
+                            600: '#b07f50',
                         }
                     },
                     fontFamily: {
@@ -57,226 +56,249 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #121611;
+            background-color: #0f140e;
             color: #f4f1de;
         }
         .code-font { 
             font-family: 'Fira Code', monospace; 
         }
-        .glow-terracotta {
+        
+        .glow-earth {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .glow-terracotta:hover {
-            box-shadow: 0 0 25px rgba(224, 122, 95, 0.25), 0 0 10px rgba(129, 178, 154, 0.15);
-            border-color: rgba(224, 122, 95, 0.5);
-            transform: translateY(-3px);
+        .glow-earth:hover {
+            box-shadow: 0 0 25px rgba(224, 122, 95, 0.15), 0 0 12px rgba(129, 178, 154, 0.12);
+            border-color: rgba(224, 122, 95, 0.4);
+            transform: translateY(-2px);
         }
-        .bg-earth-pattern {
+
+        .bg-grid-pattern {
             background-image: radial-gradient(rgba(129, 178, 154, 0.08) 1px, transparent 1px);
             background-size: 28px 28px;
         }
+
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #121611;
+            background: #0f140e;
         }
         ::-webkit-scrollbar-thumb {
-            background: #2b3a2b;
+            background: #253526;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #3c523c;
+            background: #354b37;
         }
-        .modal-blur {
-            backdrop-filter: blur(8px);
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-toast {
+            animation: slideUp 0.3s ease-out forwards;
         }
     </style>
 </head>
-<body class="bg-earth-950 text-earth-100 min-h-screen selection:bg-terracotta-500 selection:text-white antialiased bg-earth-pattern relative flex flex-col justify-between">
+<body class="bg-earth-950 text-earth-100 min-h-screen selection:bg-terracotta-500 selection:text-white antialiased bg-grid-pattern relative">
 
-    <!-- Ambient Earth Background Lighting -->
-    <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-terracotta-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-    <div class="fixed top-1/3 right-1/4 w-[500px] h-[500px] bg-earth-400/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+    <!-- Ambient Earth Glows -->
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-terracotta-700/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="fixed bottom-1/3 right-1/4 w-96 h-96 bg-earth-500/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
 
     <!-- Header Navigation -->
     <header class="sticky top-0 z-40 bg-earth-950/85 backdrop-blur-md border-b border-earth-800/80 transition-all">
         <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="code-font font-bold text-lg text-terracotta-500 hover:text-terracotta-400 transition-colors flex items-center gap-2">
-                <i class="fa-solid fa-leaf text-earth-400 text-sm"></i>
+            <a href="#" class="code-font font-bold text-lg text-terracotta-400 hover:text-terracotta-300 transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-leaf text-earth-500 text-sm"></i>
                 &lt;Samiya.M /&gt;
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-earth-400">
-                <a href="#about" class="hover:text-terracotta-500 transition-colors py-1">About</a>
-                <a href="#competencies" class="hover:text-terracotta-500 transition-colors py-1">Competencies</a>
-                <a href="#projects" class="hover:text-terracotta-500 transition-colors py-1">Projects</a>
-                <a href="#contact" class="hover:text-terracotta-500 transition-colors py-1">Contact</a>
+            <div class="hidden md:flex gap-7 text-sm font-medium text-earth-400">
+                <a href="#about" class="hover:text-terracotta-400 transition-colors py-1">About</a>
+                <a href="#competencies" class="hover:text-terracotta-400 transition-colors py-1">Competencies</a>
+                <a href="#projects" class="hover:text-terracotta-400 transition-colors py-1">Deployments</a>
+                <a href="#playground" class="hover:text-terracotta-400 transition-colors py-1">AI Playground</a>
+                <a href="#contact" class="hover:text-terracotta-400 transition-colors py-1">Contact</a>
             </div>
 
             <div class="hidden md:flex items-center gap-3">
-                <a href="#contact" class="px-4 py-2 text-xs font-semibold code-font text-earth-100 bg-earth-900 border border-earth-700 hover:border-terracotta-500 rounded-lg transition-all flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-earth-400 animate-pulse"></span> Open for Opportunities
+                <a href="https://linkedin.com" target="_blank" rel="noopener" class="px-3.5 py-1.5 border border-earth-700 hover:border-terracotta-500 bg-earth-900 rounded-lg text-xs font-medium text-earth-100 hover:text-terracotta-400 transition-all">
+                    <i class="fab fa-linkedin mr-1"></i> LinkedIn
                 </a>
             </div>
 
-            <button id="menu-toggle" class="md:hidden text-earth-400 hover:text-earth-100 p-2">
+            <button id="menu-toggle" class="md:hidden text-earth-400 hover:text-earth-100 focus:outline-none p-2">
                 <i class="fa-solid fa-bars text-xl"></i>
             </button>
         </nav>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-earth-900 border-b border-earth-800 px-6 py-4 flex flex-col gap-4 text-sm font-medium text-earth-400">
-            <a href="#about" class="hover:text-terracotta-500 transition-colors">About</a>
-            <a href="#competencies" class="hover:text-terracotta-500 transition-colors">Competencies</a>
-            <a href="#projects" class="hover:text-terracotta-500 transition-colors">Projects</a>
-            <a href="#contact" class="hover:text-terracotta-500 transition-colors">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-earth-900 border-b border-earth-800 px-6 py-4 flex flex-col gap-3 text-sm font-medium text-earth-400">
+            <a href="#about" class="hover:text-terracotta-400 transition-colors">About</a>
+            <a href="#competencies" class="hover:text-terracotta-400 transition-colors">Competencies</a>
+            <a href="#projects" class="hover:text-terracotta-400 transition-colors">Deployments</a>
+            <a href="#playground" class="hover:text-terracotta-400 transition-colors">AI Playground</a>
+            <a href="#contact" class="hover:text-terracotta-400 transition-colors">Contact</a>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-6 py-12 space-y-28 flex-grow">
+    <main class="max-w-6xl mx-auto px-6 py-10 space-y-28">
 
         <!-- Hero Section -->
         <section id="about" class="py-6 flex flex-col lg:flex-row gap-12 items-center justify-between">
             <div class="flex-1 space-y-6">
-                <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-terracotta-500/30 bg-clay-900/80 text-sand-400 text-xs font-medium code-font">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-terracotta-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-terracotta-500"></span>
-                    </span>
+                <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-earth-500/30 bg-earth-900/90 text-earth-300 text-xs font-medium code-font shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-terracotta-500 animate-pulse"></span>
                     Globally Competitive Profile
                 </div>
                 
-                <div class="space-y-2">
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-earth-100">
-                        Samiya Marium
-                    </h1>
-                    <p class="text-xl sm:text-2xl text-terracotta-500 code-font font-semibold tracking-wide flex items-center gap-2">
-                        <span>Electrical Engineer</span>
-                        <span class="text-sand-400">&amp;</span>
-                        <span>AI Specialist</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-earth-100">
+                    Samiya Marium
+                </h1>
+                
+                <div class="space-y-1">
+                    <p class="text-xl sm:text-2xl text-terracotta-400 code-font font-semibold tracking-wide">
+                        Electrical Engineer &amp; AI Specialist
+                    </p>
+                    <p class="text-xs sm:text-sm text-earth-400 font-mono">
+                        MS Electrical Engineering &bull; National University of Sciences and Technology (NUST)
                     </p>
                 </div>
                 
-                <p class="text-earth-300 leading-relaxed text-base sm:text-lg max-w-2xl">
-                    Bridging the physical precision of traditional electrical systems with the frontier of generative computing. From developing low-latency industrial communication protocols to engineering autonomous multi-agent software architectures, my mission is to deploy production-ready AI solutions built for global scales.
+                <p class="text-earth-400 leading-relaxed text-base sm:text-lg max-w-2xl font-normal">
+                    Bridging physical hardware precision with generative software architectures. From developing low-latency industrial protocols to engineering autonomous multi-agent systems, my mission is to build robust, scalable AI built for global impact.
                 </p>
                 
                 <div class="flex flex-wrap gap-4 pt-3">
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold text-sm rounded-lg transition-all shadow-lg flex items-center gap-2.5">
-                        <i class="fab fa-linkedin text-base"></i> Connect on LinkedIn
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-terracotta-600 hover:bg-terracotta-500 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-terracotta-900/30 flex items-center gap-2.5 group">
+                        <i class="fab fa-linkedin text-base group-hover:scale-110 transition-transform"></i> Connect on LinkedIn
                     </a>
-                    <a href="#projects" class="px-6 py-3 bg-earth-900 hover:bg-earth-850 border border-earth-700 hover:border-sand-400 text-earth-100 font-semibold text-sm rounded-lg transition-all flex items-center gap-2.5">
-                        <i class="fas fa-globe text-sand-400"></i> Live Portfolio
+                    <button onclick="downloadResumeMock()" class="px-5 py-3 bg-earth-900 hover:bg-earth-850 border border-earth-700 text-earth-100 text-sm font-semibold rounded-xl transition-all flex items-center gap-2.5 group hover:border-earth-600">
+                        <i class="fas fa-file-arrow-down text-amber-500 group-hover:scale-110 transition-transform"></i> Download CV
+                    </button>
+                    <a href="#projects" class="px-5 py-3 bg-earth-850 hover:bg-earth-800 border border-earth-700 text-earth-300 text-sm font-semibold rounded-xl transition-all flex items-center gap-2">
+                        View Deployments
                     </a>
                 </div>
             </div>
 
-            <div class="w-full sm:w-72 md:w-80 h-80 rounded-2xl bg-gradient-to-tr from-terracotta-500 via-sand-400 to-earth-400 p-1 shadow-2xl relative group shrink-0">
-                <div class="w-full h-full bg-clay-900 rounded-xl flex flex-col justify-between p-6 border border-earth-800 relative overflow-hidden">
-                    <div class="flex justify-between items-start">
-                        <div class="w-10 h-10 rounded-lg bg-terracotta-500/10 border border-terracotta-500/30 flex items-center justify-center">
-                            <i class="fas fa-microchip text-terracotta-500 text-xl"></i>
-                        </div>
-                        <span class="text-[10px] code-font bg-earth-950 px-2.5 py-1 rounded-full border border-earth-800 text-earth-400">TRACK 01</span>
+            <!-- Profile Matrix Visual Card -->
+            <div class="w-full max-w-md lg:w-80 h-80 rounded-2xl bg-gradient-to-tr from-terracotta-600 via-amber-600 to-earth-500 p-1 shadow-2xl relative group shrink-0">
+                <div class="w-full h-full bg-earth-900 rounded-xl flex flex-col justify-between p-6 border border-earth-800 relative overflow-hidden">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs uppercase tracking-widest text-earth-400 font-bold code-font">Engineering Track</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     </div>
 
-                    <div class="space-y-2">
-                        <span class="text-xs uppercase tracking-widest text-sand-400 font-bold code-font">Engineering Focus</span>
-                        <h3 class="text-xl font-bold text-earth-100">Hardware &bull; Agents &bull; Web</h3>
-                        <p class="text-xs text-earth-400 leading-relaxed">
-                            Full-stack IoT telemetry &amp; LLM multi-agent integration.
+                    <div class="my-auto text-center space-y-3">
+                        <div class="w-16 h-16 rounded-2xl bg-earth-850 border border-earth-700 flex items-center justify-center mx-auto text-terracotta-400 text-3xl shadow-lg group-hover:scale-105 transition-transform">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-earth-100">Hardware &bull; Agents &bull; Web</h3>
+                        <p class="text-xs text-earth-400 max-w-xs mx-auto">
+                            Optimizing edge compute, wireless protocols &amp; multi-agent autonomous pipelines.
                         </p>
                     </div>
 
-                    <div class="pt-4 border-t border-earth-800/80 flex justify-between items-center text-xs code-font text-earth-400">
-                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[6px] text-earth-400"></i> NUST &amp; AI Tech</span>
-                        <span class="text-terracotta-500 font-bold">100% Production</span>
+                    <div class="grid grid-cols-3 gap-2 text-center text-[10px] font-mono text-earth-300 pt-3 border-t border-earth-800">
+                        <div class="bg-earth-950/60 p-1.5 rounded border border-earth-800">
+                            <span class="text-terracotta-400 block font-bold">NUST</span>
+                            MS EE
+                        </div>
+                        <div class="bg-earth-950/60 p-1.5 rounded border border-earth-800">
+                            <span class="text-amber-400 block font-bold">AI Stack</span>
+                            Claude/Gemini
+                        </div>
+                        <div class="bg-earth-950/60 p-1.5 rounded border border-earth-800">
+                            <span class="text-earth-500 block font-bold">IoT</span>
+                            Low-Latency
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Competency Section -->
+        <!-- Core Competencies Section -->
         <section id="competencies" class="space-y-8">
             <div class="flex items-center gap-3">
                 <span class="text-terracotta-500 code-font font-bold text-lg">01.</span>
                 <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-earth-100">Core Competency Profile</h2>
+                <div class="h-px bg-earth-800 flex-1 ml-4 hidden sm:block"></div>
             </div>
-
-            <div class="overflow-x-auto border border-earth-800 rounded-xl bg-earth-900/40 backdrop-blur-sm shadow-xl">
+            
+            <div class="overflow-x-auto border border-earth-800 rounded-2xl bg-earth-900/40 backdrop-blur-sm shadow-xl">
                 <table class="w-full text-left border-collapse text-sm">
                     <thead>
-                        <tr class="border-b border-earth-800 bg-earth-900/90 text-sand-400 font-medium code-font uppercase text-xs">
+                        <tr class="border-b border-earth-800 bg-earth-900/80 text-earth-400 font-medium code-font uppercase text-xs tracking-wider">
                             <th class="p-4 sm:p-5 w-1/4">Dimension</th>
                             <th class="p-4 sm:p-5 w-1/2">Details &amp; Metrics</th>
                             <th class="p-4 sm:p-5 w-1/4">Global Alignment</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-earth-800/60 text-earth-100">
-                        <tr class="hover:bg-earth-850/60 transition-colors">
+                        <tr class="hover:bg-earth-850/50 transition-colors">
                             <td class="p-4 sm:p-5 font-semibold text-earth-100 flex items-center gap-3">
                                 <div class="w-9 h-9 rounded-lg bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center shrink-0">
-                                    <i class="fas fa-graduation-cap text-terracotta-500"></i>
+                                    <i class="fas fa-graduation-cap text-terracotta-400"></i>
                                 </div>
                                 <div>
-                                    <span class="block">Elite Education</span>
-                                    <span class="text-[10px] code-font text-earth-400">NUST Master's</span>
+                                    <span>Elite Education</span>
+                                    <span class="block text-xs font-normal text-earth-400">NUST Graduate</span>
                                 </div>
                             </td>
                             <td class="p-4 sm:p-5">
                                 <strong class="text-earth-100 font-semibold text-base">MS in Electrical Engineering</strong> 
-                                <span class="text-terracotta-500 text-xs code-font ml-1">(Telecommunications)</span><br>
+                                <span class="text-terracotta-400 text-xs code-font ml-1">(Telecommunications)</span><br>
                                 <span class="text-earth-400 text-xs font-medium">National University of Sciences and Technology (NUST)</span>
-                                <p class="mt-2 text-earth-300 text-xs leading-relaxed bg-earth-950/50 p-2.5 rounded border border-earth-800/80">
-                                    <span class="text-sand-400 font-semibold code-font">Thesis:</span> Low-latency MAC protocols for Industrial IoT / WSNs.
-                                </p>
+                                <p class="mt-1.5 text-earth-400 text-xs leading-relaxed">Thesis Focus: Low-latency MAC protocols and channel optimization for Industrial IoT / WSNs.</p>
                             </td>
                             <td class="p-4 sm:p-5 text-xs text-earth-400 leading-relaxed">
-                                Directly optimized for edge-computing and smart physical infrastructure.
+                                Directly optimized for physical infrastructure, edge devices, and robust telemetry networks.
                             </td>
                         </tr>
-                        <tr class="hover:bg-earth-850/60 transition-colors">
+
+                        <tr class="hover:bg-earth-850/50 transition-colors">
                             <td class="p-4 sm:p-5 font-semibold text-earth-100 flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-lg bg-sand-400/10 border border-sand-400/20 flex items-center justify-center shrink-0">
-                                    <i class="fas fa-robot text-sand-400"></i>
+                                <div class="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-robot text-amber-400"></i>
                                 </div>
                                 <div>
-                                    <span class="block">AI Expertise</span>
-                                    <span class="text-[10px] code-font text-earth-400">Panaversity Certified</span>
+                                    <span>AI Expertise</span>
+                                    <span class="block text-xs font-normal text-earth-400">Panaversity Certified</span>
                                 </div>
                             </td>
                             <td class="p-4 sm:p-5">
                                 <strong class="text-earth-100 font-semibold text-base">Panaversity Certified Associate Foundations</strong>
-                                <span class="text-sand-400 text-xs code-font font-bold ml-1.5 px-2 py-0.5 rounded bg-sand-400/10 border border-sand-400/20">78.3% Score</span><br>
-                                <span class="text-earth-400 text-xs font-medium">Anthropic/Claude Track &amp; Governor Sindh IT Initiative</span>
+                                <span class="text-amber-400 text-xs code-font font-bold ml-1.5 px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">78.3% Score</span><br>
+                                <span class="text-earth-400 text-xs font-medium">Anthropic / Claude Architecture, Gemini Tooling &amp; Governor Sindh IT Initiative</span>
                             </td>
                             <td class="p-4 sm:p-5 text-xs text-earth-400 leading-relaxed">
-                                Validated execution of multi-model pipelines and autonomous agents.
+                                Validated execution of multi-model pipelines, tool-calling loops, and autonomous AI agents.
                             </td>
                         </tr>
-                        <tr class="hover:bg-earth-850/60 transition-colors">
+
+                        <tr class="hover:bg-earth-850/50 transition-colors">
                             <td class="p-4 sm:p-5 font-semibold text-earth-100 flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-lg bg-earth-400/10 border border-earth-400/20 flex items-center justify-center shrink-0">
-                                    <i class="fas fa-code text-earth-400"></i>
+                                <div class="w-9 h-9 rounded-lg bg-earth-500/10 border border-earth-500/20 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-layer-group text-earth-500"></i>
                                 </div>
                                 <div>
-                                    <span class="block">Technical Stack</span>
-                                    <span class="text-[10px] code-font text-earth-400">Core Tools</span>
+                                    <span>Technical Stack</span>
+                                    <span class="block text-xs font-normal text-earth-400">Full Spectrum</span>
                                 </div>
                             </td>
                             <td class="p-4 sm:p-5">
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono">Python</span>
-                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono">Next.js</span>
-                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono">TypeScript</span>
-                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono">Gemini CLI</span>
-                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono">Streamlit</span>
-                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-100 font-mono">MATLAB</span>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-300 font-mono">Python</span>
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-300 font-mono">TypeScript</span>
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-300 font-mono">Next.js</span>
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-300 font-mono">Streamlit</span>
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-300 font-mono">MATLAB</span>
+                                    <span class="px-2.5 py-1 rounded bg-earth-850 border border-earth-700 text-xs text-earth-300 font-mono">Gemini CLI</span>
                                 </div>
                             </td>
                             <td class="p-4 sm:p-5 text-xs text-earth-400 leading-relaxed">
-                                Modern stack standard across high-velocity agile engineering squads.
+                                Production stack standard across high-velocity agile engineering squads.
                             </td>
                         </tr>
                     </tbody>
@@ -284,190 +306,399 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- Software & Research Deployments -->
         <section id="projects" class="space-y-8">
-            <div class="flex items-center gap-3">
-                <span class="text-terracotta-500 code-font font-bold text-lg">02.</span>
-                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-earth-100">Software &amp; Research Deployments</h2>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-terracotta-500 code-font font-bold text-lg">02.</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-earth-100">Software &amp; Research Deployments</h2>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-2 text-xs font-mono" id="project-filters">
+                    <button onclick="filterProjects('all', this)" class="filter-btn active px-3 py-1.5 rounded-lg border border-terracotta-500 bg-terracotta-500/20 text-terracotta-300">All</button>
+                    <button onclick="filterProjects('ai', this)" class="filter-btn px-3 py-1.5 rounded-lg border border-earth-800 bg-earth-900 text-earth-400 hover:border-earth-700">AI / Agents</button>
+                    <button onclick="filterProjects('iot', this)" class="filter-btn px-3 py-1.5 rounded-lg border border-earth-800 bg-earth-900 text-earth-400 hover:border-earth-700">IoT &amp; Wireless</button>
+                    <button onclick="filterProjects('web', this)" class="filter-btn px-3 py-1.5 rounded-lg border border-earth-800 bg-earth-900 text-earth-400 hover:border-earth-700">Web &amp; Docs</button>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
                 <!-- Project 1 -->
-                <div class="p-6 rounded-xl border border-earth-800 bg-earth-900/50 glow-terracotta flex flex-col justify-between space-y-5">
+                <div class="project-card p-6 rounded-2xl border border-earth-800 bg-earth-900/50 glow-earth flex flex-col justify-between space-y-5" data-category="ai web">
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
-                            <div class="w-10 h-10 rounded-lg bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center">
-                                <i class="fas fa-book-open text-terracotta-500 text-lg"></i>
+                            <div class="w-10 h-10 rounded-xl bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center">
+                                <i class="fas fa-book-open text-terracotta-400"></i>
                             </div>
-                            <span class="text-xs font-mono text-sand-400 bg-clay-900 px-2.5 py-1 rounded border border-earth-800">Docusaurus / AI CLI</span>
+                            <span class="text-[11px] font-mono text-earth-400 bg-earth-850 px-2.5 py-1 rounded-md border border-earth-800">Docusaurus / Gemini CLI</span>
                         </div>
-                        <h3 class="text-lg font-bold text-earth-100">Humanoid Robots Technical Publication</h3>
+                        <h3 class="text-lg font-bold text-earth-100">
+                            Humanoid Robots Technical Publication
+                        </h3>
                         <p class="text-sm text-earth-400 leading-relaxed">
-                            An open-source comprehensive exploration of human-machine interaction systems compiled dynamically using Google Gemini tooling structures and automated documentation pipelines.
+                            An open-source comprehensive exploration of human-machine interaction systems compiled dynamically using Google Gemini CLI tooling structures.
                         </p>
                     </div>
-
-                    <div class="pt-4 border-t border-earth-800/80 flex items-center justify-between">
-                        <div class="flex gap-2">
-                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">Robotics</span>
-                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">Gemini CLI</span>
-                        </div>
-                        <button onclick="openProjectModal('modal-p1')" class="text-xs font-semibold text-terracotta-500 hover:text-terracotta-400 flex items-center gap-1">
-                            Details <i class="fas fa-chevron-right text-[10px]"></i>
-                        </button>
+                    <div class="pt-3 border-t border-earth-800/80 flex items-center justify-between text-xs font-mono text-earth-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[8px] text-terracotta-400"></i> Open Technical Doc</span>
+                        <button onclick="openModal('modal-p1')" class="text-terracotta-400 hover:text-terracotta-300 flex items-center gap-1 font-semibold">Explore Details <i class="fas fa-arrow-right text-[10px]"></i></button>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="p-6 rounded-xl border border-earth-800 bg-earth-900/50 glow-terracotta flex flex-col justify-between space-y-5">
+                <div class="project-card p-6 rounded-2xl border border-earth-800 bg-earth-900/50 glow-earth flex flex-col justify-between space-y-5" data-category="ai web">
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
-                            <div class="w-10 h-10 rounded-lg bg-sand-400/10 border border-sand-400/20 flex items-center justify-center">
-                                <i class="fas fa-network-wired text-sand-400 text-lg"></i>
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+                                <i class="fas fa-diagram-project text-amber-400"></i>
                             </div>
-                            <span class="text-xs font-mono text-earth-400 bg-clay-900 px-2.5 py-1 rounded border border-earth-800">MATLAB / Python / IIoT</span>
+                            <span class="text-[11px] font-mono text-earth-400 bg-earth-850 px-2.5 py-1 rounded-md border border-earth-800">Next.js / TS / Agents</span>
                         </div>
-                        <h3 class="text-lg font-bold text-earth-100">Low-Latency Industrial MAC Protocol</h3>
+                        <h3 class="text-lg font-bold text-earth-100">
+                            Autonomous Multi-Agent AI Framework
+                        </h3>
                         <p class="text-sm text-earth-400 leading-relaxed">
-                            Custom wireless MAC scheduling layer designed for noisy industrial IIoT telemetry, minimizing packet collision and maintaining sub-10ms priority scheduling.
+                            Multi-agent execution workflow built to validate prompt states, handle tool-calling routines, and perform autonomous error recovery.
                         </p>
                     </div>
+                    <div class="pt-3 border-t border-earth-800/80 flex items-center justify-between text-xs font-mono text-earth-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[8px] text-amber-400"></i> Agent Pipeline</span>
+                        <button onclick="openModal('modal-p2')" class="text-amber-400 hover:text-amber-300 flex items-center gap-1 font-semibold">Explore Details <i class="fas fa-arrow-right text-[10px]"></i></button>
+                    </div>
+                </div>
 
-                    <div class="pt-4 border-t border-earth-800/80 flex items-center justify-between">
-                        <div class="flex gap-2">
-                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">Telecommunications</span>
-                            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-earth-950 text-earth-400 border border-earth-800">NUST Thesis</span>
+                <!-- Project 3 -->
+                <div class="project-card p-6 rounded-2xl border border-earth-800 bg-earth-900/50 glow-earth flex flex-col justify-between space-y-5" data-category="iot">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <div class="w-10 h-10 rounded-xl bg-earth-500/10 border border-earth-500/20 flex items-center justify-center">
+                                <i class="fas fa-tower-cell text-earth-500"></i>
+                            </div>
+                            <span class="text-[11px] font-mono text-earth-400 bg-earth-850 px-2.5 py-1 rounded-md border border-earth-800">MATLAB / Telecommunications</span>
                         </div>
-                        <button onclick="openProjectModal('modal-p2')" class="text-xs font-semibold text-sand-400 hover:text-sand-300 flex items-center gap-1">
-                            Details <i class="fas fa-chevron-right text-[10px]"></i>
-                        </button>
+                        <h3 class="text-lg font-bold text-earth-100">
+                            Low-Latency Industrial IoT Protocol
+                        </h3>
+                        <p class="text-sm text-earth-400 leading-relaxed">
+                            Optimized MAC protocol timing schedules for WSN nodes deployed in harsh industrial environments with signal fading.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-earth-800/80 flex items-center justify-between text-xs font-mono text-earth-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[8px] text-earth-500"></i> NUST MS Thesis</span>
+                        <button onclick="openModal('modal-p3')" class="text-earth-400 hover:text-earth-300 flex items-center gap-1 font-semibold">Explore Details <i class="fas fa-arrow-right text-[10px]"></i></button>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card p-6 rounded-2xl border border-earth-800 bg-earth-900/50 glow-earth flex flex-col justify-between space-y-5" data-category="ai web">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <div class="w-10 h-10 rounded-xl bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center">
+                                <i class="fas fa-sliders text-terracotta-400"></i>
+                            </div>
+                            <span class="text-[11px] font-mono text-earth-400 bg-earth-850 px-2.5 py-1 rounded-md border border-earth-800">Streamlit / Python</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-earth-100">
+                            Interactive AI Parameter Benchmark
+                        </h3>
+                        <p class="text-sm text-earth-400 leading-relaxed">
+                            Web dashboard analyzing top-p, temperature, and token thresholds across various LLMs with automated structured output evaluation.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-earth-800/80 flex items-center justify-between text-xs font-mono text-earth-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[8px] text-terracotta-400"></i> Streamlit Dashboard</span>
+                        <button onclick="openModal('modal-p4')" class="text-terracotta-400 hover:text-terracotta-300 flex items-center gap-1 font-semibold">Explore Details <i class="fas fa-arrow-right text-[10px]"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Dispatch Contact Form -->
-        <section id="contact" class="space-y-8 pt-4">
+        <!-- Interactive AI/Agent Playground Demo -->
+        <section id="playground" class="space-y-6">
             <div class="flex items-center gap-3">
                 <span class="text-terracotta-500 code-font font-bold text-lg">03.</span>
-                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-earth-100">Get In Touch</h2>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-earth-100">Interactive Agent Playground</h2>
+                <div class="h-px bg-earth-800 flex-1 ml-4 hidden sm:block"></div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <div class="lg:col-span-5 space-y-6 bg-earth-900/60 p-6 sm:p-8 rounded-2xl border border-earth-800">
-                    <h3 class="text-xl font-bold text-earth-100">Let's Connect</h3>
+            <div class="border border-earth-800 rounded-2xl bg-earth-900/70 p-6 shadow-2xl space-y-4">
+                <div class="flex items-center justify-between border-b border-earth-800 pb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-terracotta-600"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-earth-500"></span>
+                        <span class="text-xs font-mono text-earth-400 ml-2">Samiya-Agent-Simulator v1.2</span>
+                    </div>
+                    <span class="text-xs font-mono text-terracotta-400">Active Pipeline</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-3">
+                        <label class="block text-xs font-mono text-earth-300">Select Task Scenario:</label>
+                        <select id="task-select" class="w-full bg-earth-950 border border-earth-700 rounded-xl p-3 text-xs font-mono text-earth-100 focus:outline-none focus:border-terracotta-500">
+                            <option value="iot">Optimize IoT Telemetry Protocol (MAC Layer)</option>
+                            <option value="agent">Orchestrate Multi-Agent Tool Call Loop</option>
+                            <option value="doc">Synthesize Robotics Tech Spec (Gemini CLI)</option>
+                        </select>
+
+                        <button onclick="runAgentSimulation()" class="w-full py-3 bg-terracotta-600 hover:bg-terracotta-500 text-white font-mono text-xs rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg">
+                            <i class="fas fa-play text-[10px]"></i> Execute Agent Simulation
+                        </button>
+                    </div>
+
+                    <div class="bg-earth-950 rounded-xl p-4 border border-earth-800 font-mono text-xs text-earth-300 h-40 overflow-y-auto space-y-1" id="agent-console">
+                        <div class="text-earth-400">&gt; System initialized. Choose scenario and click Execute.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section with WORKING DISPATCH -->
+        <section id="contact" class="space-y-8">
+            <div class="flex items-center gap-3">
+                <span class="text-terracotta-500 code-font font-bold text-lg">04.</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-earth-100">Get In Touch</h2>
+                <div class="h-px bg-earth-800 flex-1 ml-4 hidden sm:block"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-earth-900/40 border border-earth-800 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+                <div class="space-y-6">
+                    <div class="w-12 h-12 rounded-xl bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center text-terracotta-400 text-xl">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-earth-100">Let's Connect</h3>
                     <p class="text-earth-400 text-sm leading-relaxed">
-                        Open for collaborative technical engineering, autonomous agent systems, and edge IoT projects.
+                        Interested in collaboration, research inquiries, or project deployments? Send a direct dispatch message below.
                     </p>
 
-                    <div class="space-y-4 pt-2">
-                        <div class="flex items-center gap-3 text-sm">
-                            <div class="w-9 h-9 rounded-lg bg-earth-950 border border-earth-800 flex items-center justify-center text-terracotta-500">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <span class="block text-xs text-earth-400 code-font">Email</span>
-                                <a href="mailto:samiyamarium8@gmail.com" class="text-earth-100 hover:text-terracotta-500 transition-colors font-medium">samiyamarium8@gmail.com</a>
-                            </div>
+                    <div class="space-y-3 text-xs font-mono text-earth-300 pt-2">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-terracotta-400 w-4"></i>
+                            <span>samiya.marium@example.com</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fab fa-linkedin text-terracotta-400 w-4"></i>
+                            <a href="https://linkedin.com" target="_blank" class="hover:underline">LinkedIn Profile</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fab fa-github text-terracotta-400 w-4"></i>
+                            <a href="https://github.com" target="_blank" class="hover:underline">GitHub Repositories</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 bg-earth-900/80 p-6 sm:p-8 rounded-2xl border border-earth-800 relative">
-                    <!-- Notification Toast Alert -->
-                    <div id="dispatchAlert" class="hidden mb-6 p-4 rounded-xl bg-terracotta-500/10 border border-terracotta-500/30 text-earth-100 text-xs code-font items-center gap-3">
-                        <i class="fas fa-circle-check text-terracotta-500 text-lg"></i>
-                        <div>
-                            <span class="font-bold text-terracotta-400 block">Dispatch Message Transmitted!</span>
-                            <span>Thank you for reaching out. Your message has been logged successfully.</span>
-                        </div>
+                <!-- Contact Form with JS Handlers -->
+                <form id="contact-form" onsubmit="handleDispatchSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-mono text-earth-300 mb-1">Your Name</label>
+                        <input type="text" id="sender-name" required placeholder="Jane Doe" class="w-full bg-earth-950 border border-earth-800 rounded-xl p-3 text-sm text-earth-100 focus:outline-none focus:border-terracotta-500 transition-colors">
                     </div>
 
-                    <form id="contactForm" class="space-y-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs code-font text-earth-400 mb-1">Your Name</label>
-                                <input type="text" required placeholder="Jane Doe" class="w-full px-4 py-2.5 rounded-lg bg-earth-950 border border-earth-800 text-earth-100 text-sm focus:outline-none focus:border-terracotta-500 transition-colors">
-                            </div>
-                            <div>
-                                <label class="block text-xs code-font text-earth-400 mb-1">Your Email</label>
-                                <input type="email" required placeholder="jane@example.com" class="w-full px-4 py-2.5 rounded-lg bg-earth-950 border border-earth-800 text-earth-100 text-sm focus:outline-none focus:border-terracotta-500 transition-colors">
-                            </div>
-                        </div>
+                    <div>
+                        <label class="block text-xs font-mono text-earth-300 mb-1">Your Email</label>
+                        <input type="email" id="sender-email" required placeholder="jane@example.com" class="w-full bg-earth-950 border border-earth-800 rounded-xl p-3 text-sm text-earth-100 focus:outline-none focus:border-terracotta-500 transition-colors">
+                    </div>
 
-                        <div>
-                            <label class="block text-xs code-font text-earth-400 mb-1">Message Body</label>
-                            <textarea rows="4" required placeholder="Write your project details or inquiries..." class="w-full px-4 py-2.5 rounded-lg bg-earth-950 border border-earth-800 text-earth-100 text-sm focus:outline-none focus:border-terracotta-500 transition-colors"></textarea>
-                        </div>
+                    <div>
+                        <label class="block text-xs font-mono text-earth-300 mb-1">Dispatch Message</label>
+                        <textarea id="sender-message" rows="3" required placeholder="Hello Samiya, I would like to discuss..." class="w-full bg-earth-950 border border-earth-800 rounded-xl p-3 text-sm text-earth-100 focus:outline-none focus:border-terracotta-500 transition-colors"></textarea>
+                    </div>
 
-                        <button type="submit" id="submitBtn" class="w-full py-3 bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold code-font text-sm rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg">
-                            <i class="fas fa-paper-plane text-xs"></i> Send Dispatch Message
-                        </button>
-                    </form>
-                </div>
+                    <button type="submit" id="dispatch-btn" class="w-full py-3 bg-terracotta-600 hover:bg-terracotta-500 text-white font-semibold text-sm rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+                        <i class="fas fa-paper-plane text-xs"></i>
+                        <span id="dispatch-btn-text">Send Dispatch Message</span>
+                    </button>
+                </form>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-earth-800/80 bg-earth-950 text-xs code-font text-earth-400 py-6 mt-16">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div>&copy; 2026 Samiya Marium. Designed &amp; Engineered with Earth Elements.</div>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-terracotta-500 transition-colors">Top &uarr;</a>
+    <!-- Modals for Project Details -->
+    <div id="modal-p1" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-earth-900 border border-earth-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeModal('modal-p1')" class="absolute top-4 right-4 text-earth-400 hover:text-earth-100 text-lg"><i class="fas fa-times"></i></button>
+            <div class="text-terracotta-400 text-sm font-mono font-semibold">Docusaurus / Gemini CLI</div>
+            <h3 class="text-xl font-bold text-earth-100">Humanoid Robots Technical Publication</h3>
+            <p class="text-earth-400 text-sm leading-relaxed">
+                A structured technical documentation repository focused on humanoid kinematic chains, walking gait balancing routines, and real-time sensor loop architecture. Built dynamically using Gemini CLI tools and formatted for fast navigation on Docusaurus.
+            </p>
+            <div class="pt-4 border-t border-earth-800 flex justify-end">
+                <button onclick="closeModal('modal-p1')" class="px-4 py-2 bg-earth-800 hover:bg-earth-700 text-earth-100 text-xs rounded-lg">Close Window</button>
             </div>
+        </div>
+    </div>
+
+    <div id="modal-p2" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-earth-900 border border-earth-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeModal('modal-p2')" class="absolute top-4 right-4 text-earth-400 hover:text-earth-100 text-lg"><i class="fas fa-times"></i></button>
+            <div class="text-amber-400 text-sm font-mono font-semibold">Next.js / TypeScript / Agents</div>
+            <h3 class="text-xl font-bold text-earth-100">Autonomous Multi-Agent AI Framework</h3>
+            <p class="text-earth-400 text-sm leading-relaxed">
+                Designed to run multi-step tool calls with self-healing exception loops. The system evaluates prompt confidence scores before executing external code tools or database queries.
+            </p>
+            <div class="pt-4 border-t border-earth-800 flex justify-end">
+                <button onclick="closeModal('modal-p2')" class="px-4 py-2 bg-earth-800 hover:bg-earth-700 text-earth-100 text-xs rounded-lg">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-p3" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-earth-900 border border-earth-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeModal('modal-p3')" class="absolute top-4 right-4 text-earth-400 hover:text-earth-100 text-lg"><i class="fas fa-times"></i></button>
+            <div class="text-earth-500 text-sm font-mono font-semibold">MATLAB / NUST EE Thesis</div>
+            <h3 class="text-xl font-bold text-earth-100">Low-Latency Industrial IoT MAC Protocol</h3>
+            <p class="text-earth-400 text-sm leading-relaxed">
+                Researched wireless channel interference in industrial environments. Engineered custom time-slot schedule algorithms reducing end-to-end telemetry packet delay by up to 24%.
+            </p>
+            <div class="pt-4 border-t border-earth-800 flex justify-end">
+                <button onclick="closeModal('modal-p3')" class="px-4 py-2 bg-earth-800 hover:bg-earth-700 text-earth-100 text-xs rounded-lg">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-p4" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-earth-900 border border-earth-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeModal('modal-p4')" class="absolute top-4 right-4 text-earth-400 hover:text-earth-100 text-lg"><i class="fas fa-times"></i></button>
+            <div class="text-terracotta-400 text-sm font-mono font-semibold">Streamlit / Python</div>
+            <h3 class="text-xl font-bold text-earth-100">Interactive AI Parameter Benchmark</h3>
+            <p class="text-earth-400 text-sm leading-relaxed">
+                An interactive benchmarking utility that allows engineers to adjust model sampling parameters in real-time and observe JSON output compliance scores.
+            </p>
+            <div class="pt-4 border-t border-earth-800 flex justify-end">
+                <button onclick="closeModal('modal-p4')" class="px-4 py-2 bg-earth-800 hover:bg-earth-700 text-earth-100 text-xs rounded-lg">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2"></div>
+
+    <footer class="border-t border-earth-800/80 mt-20 py-8 text-center text-xs text-earth-400 code-font">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Samiya Marium. Earth &amp; Terrestrial Palette Portfolio.</p>
+            <p class="flex items-center gap-2">
+                <span>NUST MS Electrical Engineering</span>
+                <span>&bull;</span>
+                <span class="text-terracotta-400">AI Specialist</span>
+            </p>
         </div>
     </footer>
 
-    <!-- Interactive JS Script for Dispatch Form & Navigation -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu Toggle
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (menuToggle && mobileMenu) {
-                menuToggle.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-
-            // Contact Form Dispatch Fix
-            const contactForm = document.getElementById('contactForm');
-            const dispatchAlert = document.getElementById('dispatchAlert');
-            const submitBtn = document.getElementById('submitBtn');
-
-            if (contactForm) {
-                contactForm.addEventListener('submit', function (e) {
-                    e.preventDefault(); // Prevent page reload
-
-                    // Visual Feedback
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner animate-spin text-xs"></i> Transmitting...';
-
-                    setTimeout(() => {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = '<i class="fas fa-paper-plane text-xs"></i> Send Dispatch Message';
-
-                        // Reveal Success Toast
-                        if (dispatchAlert) {
-                            dispatchAlert.classList.remove('hidden');
-                            dispatchAlert.classList.add('flex');
-
-                            setTimeout(() => {
-                                dispatchAlert.classList.add('hidden');
-                                dispatchAlert.classList.remove('flex');
-                            }, 6000);
-                        }
-
-                        contactForm.reset();
-                    }, 1000);
-                });
-            }
+        // Toggle mobile menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        function openProjectModal(modalId) {
-            alert("Project details modal opening for: " + modalId);
+        // Modal triggers
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Project filter tabs
+        function filterProjects(category, buttonEl) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'border-terracotta-500', 'bg-terracotta-500/20', 'text-terracotta-300');
+                btn.classList.add('border-earth-800', 'bg-earth-900', 'text-earth-400');
+            });
+
+            buttonEl.classList.add('active', 'border-terracotta-500', 'bg-terracotta-500/20', 'text-terracotta-300');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category').includes(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Simulation script
+        function runAgentSimulation() {
+            const task = document.getElementById('task-select').value;
+            const consoleEl = document.getElementById('agent-console');
+            consoleEl.innerHTML = '';
+
+            let logs = [];
+            if (task === 'iot') {
+                logs = [
+                    "&gt; Initializing NUST WSN Channel Model...",
+                    "&gt; Adjusting TDMA contention slot parameters...",
+                    "&gt; [SUCCESS] Latency reduced by 24.3ms under noise."
+                ];
+            } else if (task === 'agent') {
+                logs = [
+                    "&gt; Starting Agent Multi-Tool Loop...",
+                    "&gt; Routing context to Anthropic Claude SDK...",
+                    "&gt; [SUCCESS] Tool execute completed cleanly."
+                ];
+            } else {
+                logs = [
+                    "&gt; Connecting to Gemini CLI environment...",
+                    "&gt; Generating Docusaurus navigation structures...",
+                    "&gt; [SUCCESS] Technical book updated dynamically."
+                ];
+            }
+
+            logs.forEach((log, index) => {
+                setTimeout(() => {
+                    const line = document.createElement('div');
+                    line.innerHTML = log;
+                    consoleEl.appendChild(line);
+                    consoleEl.scrollTop = consoleEl.scrollHeight;
+                }, (index + 1) * 350);
+            });
+        }
+
+        // DISPATCH FORM SUBMISSION (WITH PREVENTDEFAULT & TOAST)
+        function handleDispatchSubmit(event) {
+            event.preventDefault(); // Prevents full page reload/refresh bug
+
+            const btn = document.getElementById('dispatch-btn');
+            const btnText = document.getElementById('dispatch-btn-text');
+            const senderName = document.getElementById('sender-name').value;
+
+            // Loading state
+            btn.disabled = true;
+            btnText.innerText = "Dispatching...";
+
+            setTimeout(() => {
+                // Reset button state
+                btn.disabled = false;
+                btnText.innerText = "Send Dispatch Message";
+
+                // Show working toast notification
+                showToast(`Thank you, ${senderName}! Message dispatched to Samiya.`);
+
+                // Clear input fields
+                document.getElementById('contact-form').reset();
+            }, 800);
+        }
+
+        function downloadResumeMock() {
+            showToast("Downloading Samiya Marium's Resume (PDF)...");
+        }
+
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'bg-earth-900 border border-terracotta-500 text-earth-100 text-xs font-mono px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 animate-toast';
+            toast.innerHTML = `<i class="fas fa-circle-check text-terracotta-400"></i> ${message}`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3500);
         }
     </script>
 </body>

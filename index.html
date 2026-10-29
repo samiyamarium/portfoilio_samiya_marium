@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samiya Marium | Electrical & AI Engineer Portfolio</title>
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        @import url('https://googleapis.com');
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .glow-effect:hover {
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
+            border-color: rgba(14, 165, 233, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-sky-500 selection:text-white antialiased">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-900">
+        <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="code-font font-bold text-lg text-sky-400">
+                &lt;Samiya.M /&gt;
+            </div>
+            <div class="flex gap-6 text-sm font-medium text-slate-400">
+                <a href="#about" class="hover:text-sky-400 transition-colors">About</a>
+                <a href="#competencies" class="hover:text-sky-400 transition-colors">Competencies</a>
+                <a href="#projects" class="hover:text-sky-400 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-sky-400 transition-colors">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-24">
+
+        <!-- Hero Section -->
+        <section id="about" class="py-8 flex flex-col md:flex-row gap-12 items-center">
+            <div class="flex-1 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/20 bg-sky-500/5 text-sky-400 text-xs font-medium code-font">
+                    <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span> Globally Competitive Profile
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+                    Samiya Marium
+                </h1>
+                <p class="text-xl text-sky-400 code-font font-medium">Electrical Engineer & AI Specialist</p>
+                <p class="text-slate-400 leading-relaxed max-w-2xl">
+                    Bridging the physical precision of traditional electrical systems with the frontier of generative computing. From developing low-latency industrial communication protocols to engineering autonomous multi-agent software architectures, my mission is to deploy production-ready AI solutions built for global scales.
+                </p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://linkedin.com" target="_blank" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
+                        <i class="fab fa-linkedin"></i> Connect on LinkedIn
+                    </a>
+                    <a href="https://vercel.app" target="_blank" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
+                        <i class="fas fa-external-link-alt"></i> Live Portfolio
+                    </a>
+                </div>
+            </div>
+            <div class="w-48 h-48 md:w-64 md:h-64 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-between p-1 shadow-2xl relative group">
+                <div class="w-full h-full bg-slate-950 rounded-xl flex flex-col justify-center items-center text-center p-6 border border-slate-900">
+                    <i class="fas fa-microchip text-4xl text-sky-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-1">Engineering Track</span>
+                    <span class="text-sm font-bold text-slate-300">Hardware &bull; Agents &bull; Web</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competency & Matrix Section -->
+        <section id="competencies" class="space-y-6">
+            <h2 class="text-2xl font-bold tracking-tight text-slate-100 flex items-center gap-3">
+                <span class="text-sky-500 code-font">01.</span> Core Competency Profile
+            </h2>
+            
+            <div class="overflow-x-auto border border-slate-900 rounded-xl bg-slate-900/20 backdrop-blur-sm">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="border-b border-slate-900 bg-slate-900/50 text-slate-400 font-medium">
+                            <th class="p-4 w-1/4">Dimension</th>
+                            <th class="p-4 w-1/2">Details & Metrics</th>
+                            <th class="p-4 w-1/4">Global Alignment</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-900 text-slate-300">
+                        <tr class="hover:bg-slate-900/30 transition-colors">
+                            <td class="p-4 font-semibold text-white flex items-center gap-2">
+                                <i class="fas fa-graduation-cap text-sky-400 w-5"></i> Elite Education
+                            </td>
+                            <td class="p-4">
+                                <strong class="text-slate-100">MS in Electrical Engineering</strong> (Telecommunications)<br>
+                                <span class="text-slate-400 text-xs">National University of Sciences and Technology (NUST)</span><br>
+                                <p class="mt-1 text-slate-400 text-xs">Thesis: Low-latency MAC protocols for Industrial IoT / WSNs.</p>
+                            </td>
+                            <td class="p-4 text-xs text-slate-400">Directly optimized for edge-computing and smart physical infrastructure.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/30 transition-colors">
+                            <td class="p-4 font-semibold text-white flex items-center gap-2">
+                                <i class="fas fa-robot text-sky-400 w-5"></i> AI Expertise
+                            </td>
+                            <td class="p-4">
+                                <strong class="text-slate-100">Panaversity Certified Associate Foundations</strong> (78.3% Score)<br>
+                                <span class="text-slate-400 text-xs">Anthropic/Claude & Governor Sindh IT Initiative Track</span>
+                            </td>
+                            <td class="p-4 text-xs text-slate-400">Validated execution of multi-model pipelines and autonomous agents.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/30 transition-colors">
+                            <td class="p-4 font-semibold text-white flex items-center gap-2">
+                                <i class="fas fa-code text-sky-400 w-5"></i> Technical Stack
+                            </td>
+                            <td class="p-4">
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">Python</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">Next.js</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">TypeScript</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">Gemini CLI</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">Streamlit</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-sky-300 font-mono">MATLAB</span>
+                            </td>
+                            <td class="p-4 text-xs text-slate-400">Modern stack standard across high-velocity agile engineering squads.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Projects Ecosystem -->
+        <section id="projects" class="space-y-6">
+            <h2 class="text-2xl font-bold tracking-tight text-slate-100 flex items-center gap-3">
+                <span class="text-sky-500 code-font">02.</span> Software & Research Deployments
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="p-6 rounded-xl border border-slate-900 bg-slate-900/10 glow-effect transition-all space-y-4">
+                    <div class="flex justify-between items-start">
+                        <i class="fas fa-book-open text-2xl text-sky-400"></i>
+                        <span class="text-xs font-mono text-slate-500">Docusaurus / AI CLI</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Humanoid Robots Technical Publication</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        An open-source comprehensive exploration of human-machine interaction systems compiled dynamically using Google Gemini tooling structures.
+                    </p>
+                </div>
+                <!-- Project 2 -->
